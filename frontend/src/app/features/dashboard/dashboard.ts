@@ -1,9 +1,22 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  standalone: true,
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
+  styleUrls: ['./dashboard.css']
 })
-export class DashboardComponent {}
+export class DashboardComponent {
+
+  constructor(private router: Router) {}
+
+  logout() {
+
+    // remove JWT token
+    localStorage.removeItem('token');
+
+    // redirect to login
+    this.router.navigate(['/login']);
+  }
+}

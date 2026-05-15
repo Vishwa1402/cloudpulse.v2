@@ -1,4 +1,5 @@
 com\cloudpulse\backend\dto\RegisterRequest.class
+com\cloudpulse\backend\service\JwtService.class
 com\cloudpulse\backend\repository\UserRepository.class
 com\cloudpulse\backend\entity\User.class
 com\cloudpulse\backend\security\SecurityConfig.class

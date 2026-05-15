@@ -1,12 +1,13 @@
 package com.cloudpulse.backend.service;
 
+import com.cloudpulse.backend.dto.AuthResponse;
+import com.cloudpulse.backend.dto.LoginRequest;
 import com.cloudpulse.backend.entity.User;
 import com.cloudpulse.backend.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -17,25 +18,38 @@ public class UserService {
     @Autowired
     private PasswordEncoder encoder;
 
+    @Autowired
+    private JwtService jwtService;
+
+    // REGISTER
     public User registerUser(User user) {
-        user.setPassword(encoder.encode(user.getPassword()));
+
+        user.setPassword(
+                encoder.encode(user.getPassword())
+        );
+
         return repo.save(user);
     }
 
-    public String login(String email, String password) {
+    // LOGIN
+    public AuthResponse login(LoginRequest request) {
 
-        Optional<User> userOpt = repo.findByEmail(email);
+        User user = repo.findByEmail(request.getEmail())
+                .orElseThrow(() ->
+                        new RuntimeException("User not found")
+                );
 
-        if (userOpt.isEmpty()) {
-            return "User not found";
+        if (!encoder.matches(
+                request.getPassword(),
+                user.getPassword()
+        )) {
+
+            throw new RuntimeException("Invalid password");
         }
 
-        User user = userOpt.get();
+        String token =
+                jwtService.generateToken(user.getEmail());
 
-        if (encoder.matches(password, user.getPassword())) {
-            return "Login successful";
-        } else {
-            return "Invalid credentials";
-        }
+        return new AuthResponse(token);
     }
 }

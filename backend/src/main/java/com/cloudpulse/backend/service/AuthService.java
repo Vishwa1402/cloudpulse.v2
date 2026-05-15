@@ -3,6 +3,7 @@ package com.cloudpulse.backend.service;
 import com.cloudpulse.backend.dto.*;
 import com.cloudpulse.backend.entity.User;
 import com.cloudpulse.backend.repository.UserRepository;
+import com.cloudpulse.backend.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class AuthService {
 
     @Autowired
     private PasswordEncoder encoder;
+
+    @Autowired
+    private JwtService jwtService;
 
     public User register(RegisterRequest req) {
         User user = new User();
