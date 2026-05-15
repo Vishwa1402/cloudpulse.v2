@@ -2,21 +2,19 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-navbar',
   standalone: true,
-  templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.css']
+  templateUrl: './navbar.html',
+  styleUrls: ['./navbar.css']
 })
-export class DashboardComponent {
+export class NavbarComponent {
 
   constructor(private router: Router) {}
 
   logout() {
 
-    // remove JWT token
     localStorage.removeItem('token');
 
-    // redirect to login
     this.router.navigate(['/login']);
   }
 }
