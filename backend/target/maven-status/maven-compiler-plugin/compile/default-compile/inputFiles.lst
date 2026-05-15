@@ -1,0 +1,12 @@
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\BackendApplication.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\config\CorsConfig.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\controller\AuthController.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\controller\UserController.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\dto\AuthResponse.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\dto\LoginRequest.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\dto\RegisterRequest.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\User.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\UserRepository.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\security\SecurityConfig.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\service\AuthService.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\service\UserService.java

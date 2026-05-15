@@ -1,0 +1,10 @@
+com\cloudpulse\backend\dto\RegisterRequest.class
+com\cloudpulse\backend\repository\UserRepository.class
+com\cloudpulse\backend\entity\User.class
+com\cloudpulse\backend\security\SecurityConfig.class
+com\cloudpulse\backend\service\UserService.class
+com\cloudpulse\backend\BackendApplication.class
+com\cloudpulse\backend\dto\LoginRequest.class
+com\cloudpulse\backend\service\AuthService.class
+com\cloudpulse\backend\dto\AuthResponse.class
+com\cloudpulse\backend\controller\AuthController.class
