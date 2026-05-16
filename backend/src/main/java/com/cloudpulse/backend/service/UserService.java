@@ -28,6 +28,10 @@ public class UserService {
                 encoder.encode(user.getPassword())
         );
 
+        if (user.getRole() == null) {
+            user.setRole(com.cloudpulse.backend.entity.Role.VIEWER); // Default role
+        }
+
         return repo.save(user);
     }
 
@@ -48,7 +52,7 @@ public class UserService {
         }
 
         String token =
-                jwtService.generateToken(user.getEmail());
+                jwtService.generateToken(user);
 
         return new AuthResponse(token);
     }

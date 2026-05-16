@@ -41,6 +41,12 @@ export class LoginComponent {
         console.log(res);
 
         localStorage.setItem('token', res.token);
+        try {
+          const payload = JSON.parse(atob(res.token.split('.')[1]));
+          localStorage.setItem('role', payload.role || 'VIEWER');
+        } catch (e) {
+          console.error('Error parsing JWT', e);
+        }
 
         this.router.navigate(['/dashboard']);
       },
