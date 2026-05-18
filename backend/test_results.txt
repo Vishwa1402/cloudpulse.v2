@@ -1,42 +1,67 @@
 [Test Performed]
 Class: com.cloudpulse.backend.service.PrometheusServiceTest
-Time: 2026-05-18T16:31:33+05:30
+Time: 2026-05-18T17:12:35+05:30
 Status: SUCCESS
 Details:
-- testGetCpuUsage_Success: PASSED (Verified correct scaling and parsing of raw Prometheus float metrics)
-- testGetMemoryUsage_Success: PASSED (Verified correct scaling and parsing of raw Prometheus float metrics)
-- testGetRequestsPerSecond_Success: PASSED (Verified parsing with complex URL-encoded metric query containing special characters)
-- testGetErrorRate_Success: PASSED (Verified basic error rate parsing)
-- testGetMetric_ErrorResponse_ReturnsZero: PASSED (Verified graceful error handling returning 0.0 on standard connection failures)
+- testGetCpuUsage_Success: PASSED
+- testGetMemoryUsage_Success: PASSED
+- testGetRequestsPerSecond_Success: PASSED
+- testGetErrorRate_Success: PASSED
+- testGetMetric_ErrorResponse_ReturnsZero: PASSED
 - Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
 
 ---
 
 [Test Performed]
 Class: com.cloudpulse.backend.controller.DashboardControllerTest
-Time: 2026-05-18T16:42:39+05:30
+Time: 2026-05-18T17:12:35+05:30
 Status: SUCCESS
 Details:
-- testGetSummary_Success: PASSED (Verified correct response payload mapping and metric extraction in controller layer)
-- testGetSummary_ServiceThrowsException_PropagatesException: PASSED (Verified exception propagation in controller layer for global handling)
+- testGetSummary_Success: PASSED
+- testGetSummary_ServiceThrowsException_PropagatesException: PASSED
 - Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 
 ---
 
 [Test Performed]
 Class: com.cloudpulse.backend.service.DashboardServiceTest
-Time: 2026-05-18T16:42:39+05:30
+Time: 2026-05-18T17:12:35+05:30
 Status: SUCCESS
 Details:
-- testGetSummary_ReturnsCorrectMetrics: PASSED (Verified service correctly orchestrates querying all 4 Prometheus metrics via PrometheusService)
-- testGetSummary_PrometheusThrowsException_PropagatesException: PASSED (Verified Prometheus service exception handling and propagation in DashboardService)
+- testGetSummary_ReturnsCorrectMetrics: PASSED
+- testGetSummary_PrometheusThrowsException_PropagatesException: PASSED
+- Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+---
+
+[Test Performed]
+Class: com.cloudpulse.backend.service.AiAnalysisServiceTest
+Time: 2026-05-18T17:12:35+05:30
+Status: SUCCESS
+Details:
+- generateIncidentAnalysis_CpuSpike_ReturnsCorrectSummary: PASSED (Verified precise [FACT] / [SUGGESTION] separation)
+- generateIncidentAnalysis_MemorySpike_ReturnsCorrectSummary: PASSED
+- generateIncidentAnalysis_ErrorRateSpike_ReturnsCorrectSummary: PASSED
+- handleTelemetryChat_CpuQuery_RetrievesLiveCpu: PASSED (Verified Prometheus metrics integration in natural language replies)
+- handleTelemetryChat_HealthOverviewQuery_RetrievesAllTelemetry: PASSED
+- Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+
+---
+
+[Test Performed]
+Class: com.cloudpulse.backend.controller.AiChatControllerTest
+Time: 2026-05-18T17:12:35+05:30
+Status: SUCCESS
+Details:
+- chat_ValidQuery_ReturnsOkResponse: PASSED (Verified status code 200 OK and reply mapping)
+- chat_EmptyQuery_ReturnsBadRequest: PASSED (Verified status code 400 Bad Request on empty payloads)
 - Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 
 ---
 
 [Full Suite Results]
-Total tests run: 10
+Total tests run: 17
 Failures: 0
 Errors: 0
 Skipped: 0
-Status: BUILD SUCCESS (Cost-optimization legacy code fully removed)
+Status: BUILD SUCCESS (AI Command Assistant & Telemetry Chat fully operational and verified)
