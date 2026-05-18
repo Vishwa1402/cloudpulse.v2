@@ -41,6 +41,27 @@ export const routes: Routes = [
           import('./features/incident-console/incident-console.component')
             .then(m => m.IncidentConsoleComponent),
         canActivate: [authGuard]
+      },
+      {
+        path: 'services',
+        loadComponent: () =>
+          import('./features/service-registry/service-registry.component')
+            .then(m => m.ServiceRegistryComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'audit-logs',
+        loadComponent: () =>
+          import('./features/audit-logs/audit-logs.component')
+            .then(m => m.AuditLogsComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'notifications',
+        loadComponent: () =>
+          import('./features/notifications/notifications.component')
+            .then(m => m.NotificationsComponent),
+        canActivate: [authGuard]
       }
     ]
   },

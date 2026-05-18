@@ -32,4 +32,21 @@ public class EmailService {
             log.info("MOCK EMAIL SENT -> To: " + toEmail + " | Subject: URGENT Budget Alert | Cost: $" + currentCost);
         }
     }
+
+    public void sendEmail(String toEmail, String subject, String text) {
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom("alerts@cloudpulse.com");
+            message.setTo(toEmail);
+            message.setSubject(subject);
+            message.setText(text);
+
+            javaMailSender.send(message);
+            log.info("Incident notification email successfully dispatched to " + toEmail);
+        } catch (Exception e) {
+            log.error("Failed to dispatch real SMTP incident notification email to " + toEmail + ". Falling back to console logging: ", e);
+            log.info("MOCK EMAIL NOTIFICATION SENT -> To: " + toEmail + " | Subject: " + subject + " | Text: " + text);
+        }
+    }
 }
+

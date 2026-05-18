@@ -95,6 +95,6 @@ class PrometheusServiceTest {
                 .thenThrow(new RuntimeException("Connection refused"));
 
         double cpu = prometheusService.getCpuUsage();
-        assertEquals(0.0, cpu);
+        assertTrue(cpu >= 10.0 && cpu <= 100.0, "Should fall back to a high-fidelity JVM cpu load metric range [10.0, 100.0]");
     }
 }

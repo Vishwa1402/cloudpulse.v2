@@ -21,6 +21,8 @@ public class IncidentController {
 
     private final IncidentRepository incidentRepository;
     private final SimpMessagingTemplate messagingTemplate;
+    private final com.cloudpulse.backend.service.AuditLogService auditLogService;
+    private final com.cloudpulse.backend.service.NotificationService notificationService;
 
     @GetMapping
     public ResponseEntity<List<Incident>> getAllIncidents() {
@@ -42,6 +44,24 @@ public class IncidentController {
             incident.setResolvedAt(LocalDateTime.now());
             incidentRepository.save(incident);
             
+            // Log to Audit Log
+            try {
+                auditLogService.log(
+                    "INCIDENT_RESOLVE",
+                    "OPERATOR",
+                    "Incident #" + id + " on service " + incident.getServiceName() + " was manually marked as RESOLVED."
+                );
+            } catch (Exception e) {
+                log.error("Failed to write manual resolution audit log: {}", e.getMessage());
+            }
+
+            // Dispatch alert notification
+            try {
+                notificationService.dispatch(incident, "RESOLVED");
+            } catch (Exception e) {
+                log.error("Failed to dispatch resolution notification: {}", e.getMessage());
+            }
+
             // Broadcast the refresh
             try {
                 messagingTemplate.convertAndSend("/topic/incidents", "REFRESH");
@@ -54,3 +74,4 @@ public class IncidentController {
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
+

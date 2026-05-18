@@ -27,11 +27,17 @@ class IncidentControllerTest {
     @Mock
     private SimpMessagingTemplate messagingTemplate;
 
+    @Mock
+    private com.cloudpulse.backend.service.AuditLogService auditLogService;
+
+    @Mock
+    private com.cloudpulse.backend.service.NotificationService notificationService;
+
     private IncidentController incidentController;
 
     @BeforeEach
     void setUp() {
-        incidentController = new IncidentController(incidentRepository, messagingTemplate);
+        incidentController = new IncidentController(incidentRepository, messagingTemplate, auditLogService, notificationService);
     }
 
     @Test

@@ -31,6 +31,9 @@ class IncidentDetectionServiceTest {
     @Mock
     private SimpMessagingTemplate messagingTemplate;
 
+    @Mock
+    private NotificationService notificationService;
+
     private IncidentDetectionService incidentDetectionService;
 
     @BeforeEach
@@ -39,7 +42,8 @@ class IncidentDetectionServiceTest {
                 prometheusService,
                 incidentRepository,
                 aiAnalysisService,
-                messagingTemplate
+                messagingTemplate,
+                notificationService
         );
     }
 

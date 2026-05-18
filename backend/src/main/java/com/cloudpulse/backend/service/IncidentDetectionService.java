@@ -23,6 +23,7 @@ public class IncidentDetectionService {
     private final IncidentRepository incidentRepository;
     private final AiAnalysisService aiAnalysisService;
     private final SimpMessagingTemplate messagingTemplate;
+    private final NotificationService notificationService;
 
     private static final String SERVICE_NAME = "cloudpulse-demo-service";
 
@@ -75,6 +76,11 @@ public class IncidentDetectionService {
 
                 incidentRepository.save(incident);
                 log.warn("Auto-detected Incident: CPU spike triggered on service {}", SERVICE_NAME);
+                try {
+                    notificationService.dispatch(incident, "DETECTED");
+                } catch (Exception e) {
+                    log.error("Failed to dispatch CPU detection alert: {}", e.getMessage());
+                }
                 broadcastIncidentUpdate();
             }
         } else {
@@ -85,6 +91,11 @@ public class IncidentDetectionService {
                 incident.setResolvedAt(LocalDateTime.now());
                 incidentRepository.save(incident);
                 log.info("Auto-resolved Incident: CPU load recovered to %.2f%% on service {}", cpu, SERVICE_NAME);
+                try {
+                    notificationService.dispatch(incident, "RESOLVED");
+                } catch (Exception e) {
+                    log.error("Failed to dispatch CPU resolution alert: {}", e.getMessage());
+                }
                 broadcastIncidentUpdate();
             }
         }
@@ -111,6 +122,11 @@ public class IncidentDetectionService {
 
                 incidentRepository.save(incident);
                 log.warn("Auto-detected Incident: Memory saturation triggered on service {}", SERVICE_NAME);
+                try {
+                    notificationService.dispatch(incident, "DETECTED");
+                } catch (Exception e) {
+                    log.error("Failed to dispatch Memory detection alert: {}", e.getMessage());
+                }
                 broadcastIncidentUpdate();
             }
         } else {
@@ -121,6 +137,11 @@ public class IncidentDetectionService {
                 incident.setResolvedAt(LocalDateTime.now());
                 incidentRepository.save(incident);
                 log.info("Auto-resolved Incident: Memory allocation stabilized to %.2f%% on service {}", memory, SERVICE_NAME);
+                try {
+                    notificationService.dispatch(incident, "RESOLVED");
+                } catch (Exception e) {
+                    log.error("Failed to dispatch Memory resolution alert: {}", e.getMessage());
+                }
                 broadcastIncidentUpdate();
             }
         }
@@ -147,6 +168,11 @@ public class IncidentDetectionService {
 
                 incidentRepository.save(incident);
                 log.warn("Auto-detected Incident: High Error Rate triggered on service {}", SERVICE_NAME);
+                try {
+                    notificationService.dispatch(incident, "DETECTED");
+                } catch (Exception e) {
+                    log.error("Failed to dispatch Error Rate detection alert: {}", e.getMessage());
+                }
                 broadcastIncidentUpdate();
             }
         } else {
@@ -157,6 +183,11 @@ public class IncidentDetectionService {
                 incident.setResolvedAt(LocalDateTime.now());
                 incidentRepository.save(incident);
                 log.info("Auto-resolved Incident: HTTP error rate dropped to %.2f%% on service {}", errorRate, SERVICE_NAME);
+                try {
+                    notificationService.dispatch(incident, "RESOLVED");
+                } catch (Exception e) {
+                    log.error("Failed to dispatch Error Rate resolution alert: {}", e.getMessage());
+                }
                 broadcastIncidentUpdate();
             }
         }
