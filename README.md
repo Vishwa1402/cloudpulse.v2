@@ -76,47 +76,72 @@ NexusOps features a normalized PostgreSQL schema designed for high-performance i
 
 ---
 
-## 🚦 Getting Started
+## 🚦 Getting Started & Run Guides
 
-### Prerequisites
+There are two ways for a third party to run **NexusOps** locally on their laptop:
+*   **Method A: The Docker Compose Orchestration (Recommended — Zero System Dependencies)**
+*   **Method B: The Manual Local Execution (For Development & Testing)**
+
+---
+
+### 🐳 Method A: One-Command Docker Compose (Recommended)
+
+This is the fastest, cleanest way for a third party to boot the entire platform. It launches all 5 necessary services (Postgres DB, API Backend, Load spiker, Nginx Web Server, Prometheus server) pre-packaged and wired together.
+
+#### **Prerequisites:**
+*   Only **Docker** & **Docker Compose** installed on your system.
+
+#### **Execution:**
+1.  Clone the repository and open a terminal in the root folder.
+2.  Launch the environment:
+    ```bash
+    docker compose up --build
+    ```
+3.  **Explore the Applications:**
+    *   **Interactive Web UI:** `http://localhost:4200`
+    *   **Spring Boot REST API:** `http://localhost:8080/actuator/health`
+    *   **Prometheus Metrics Target:** `http://localhost:9090/targets`
+    *   **Postgres Relational DB:** Port `5432` mapped securely with volume persistence.
+
+---
+
+### 💻 Method B: Manual Local Development Setup
+
+If a developer wants to run microservices outside containers, follow these steps:
+
+#### **Prerequisites:**
 *   **Java 21 JDK** installed.
 *   **Node.js (v18+) & npm** installed.
-*   **PostgreSQL** installed and running.
-*   **Docker & Docker Compose** (Optional, for Prometheus integration).
+*   **PostgreSQL** active locally.
 
-### Step 1: Database Setup
-1.  Create a PostgreSQL database named `cloudpulse`:
+#### **Step 1: Database Initialization**
+1.  Create a local PostgreSQL database named `cloudpulse_db`:
     ```sql
-    CREATE DATABASE cloudpulse;
+    CREATE DATABASE cloudpulse_db;
     ```
-2.  Update database credentials in the backend application configuration properties:
-    `backend/src/main/resources/application.properties`.
+2.  Ensure database credentials in `backend/src/main/resources/application.properties` align with your local settings.
 
-### Step 2: Running the Backend
-1.  Navigate to the backend directory:
-    ```bash
-    cd backend
-    ```
-2.  Build and run the Spring Boot application using the Maven wrapper:
-    ```bash
-    ./mvnw spring-boot:run
-    ```
-    The API server will bootstrap on port `8080`.
+#### **Step 2: Run backend API Server**
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+*   The Spring Boot API starts on port `8080`.
 
-### Step 3: Running the Frontend
-1.  Navigate to the frontend directory:
-    ```bash
-    cd frontend
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Launch the Angular development server:
-    ```bash
-    npm run start
-    ```
-    Open your browser and navigate to `http://localhost:4200`.
+#### **Step 3: Run load spiker demo service**
+```bash
+cd demo-service
+./mvnw spring-boot:run
+```
+*   The demo loader starts on port `8081`.
+
+#### **Step 4: Launch Angular Web Client**
+```bash
+cd frontend
+npm install
+npm run start
+```
+*   Open your browser and navigate to `http://localhost:4200`.
 
 ---
 
@@ -134,15 +159,4 @@ cd backend
 *   `PrometheusServiceTest`: Validates telemetry polling and Actuator fallback resilience.
 *   `IncidentDetectionServiceTest`: Verifies automated threshold breaches, database saves, and WebSocket refresh triggers.
 *   `DashboardControllerTest` & `DashboardServiceTest`: Checks API response payload consistency.
-*   `AiAnalysisServiceTest` & `AiChatControllerTest`: Assures LLM grounding and query safety.
-
----
-
-## 🐳 Docker Deployment
-
-The environment can be orchestrated easily via Docker Compose.
-1.  To spin up the centralized Postgres, Prometheus, and Actuator targets, run:
-    ```bash
-    docker-compose up -d
-    ```
-2.  Prometheus dashboard will be available at `http://localhost:9090`.
+*   `AiAnalysisServiceTest` & `AiChatControllerTest`: Assures LLM grounding and query safety.
