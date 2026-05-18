@@ -35,7 +35,7 @@ export class LandingComponent {
 
   testimonials = [
     {
-      quote: "CloudPulse transformed our on-call operations, cutting incident MTTR by over 60%.",
+      quote: "NexusOps transformed our on-call operations, cutting incident MTTR by over 60%.",
       author: "Sarah Jenkins, VP of Site Reliability"
     },
     {

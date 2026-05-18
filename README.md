@@ -1,12 +1,12 @@
-# 🌌 CloudPulse — AI-Powered Incident Command Center & Observability Platform
+# 🌌 NexusOps — AI-Powered Incident Command Center & Observability Platform
 
-CloudPulse is a production-grade, enterprise-ready cloud observability and real-time incident response platform. Built using **Spring Boot (Java 21)** and **Angular 21**, it monitors distributed application metrics, detects infrastructure anomalies, and provides contextualized, telemetry-grounded AI diagnostic assistance.
+NexusOps is a production-grade, enterprise-ready cloud observability and real-time incident response platform. Built using **Spring Boot (Java 21)** and **Angular 21**, it monitors distributed application metrics, detects infrastructure anomalies, and provides contextualized, telemetry-grounded AI diagnostic assistance.
 
 ---
 
 ## 🚀 Architectural Overview
 
-CloudPulse is designed around a **clean, layered MVC architecture** with strict separation of concerns, transactional integrity, and fault-tolerant system boundaries.
+NexusOps is designed around a **clean, layered MVC architecture** with strict separation of concerns, transactional integrity, and fault-tolerant system boundaries.
 
 ```mermaid
 graph TD
@@ -66,7 +66,7 @@ graph TD
 
 ## 🗄️ Database Schema Design
 
-CloudPulse features a normalized PostgreSQL schema designed for high-performance indexing and multi-tenant data isolation:
+NexusOps features a normalized PostgreSQL schema designed for high-performance indexing and multi-tenant data isolation:
 
 *   **Multi-Tenancy:** `organizations`, `projects`, and `services` map hierarchical ownership.
 *   **Time-Series Metric snapshots:** `service_metrics` stores fast telemetry historical trends.
@@ -122,7 +122,7 @@ CloudPulse features a normalized PostgreSQL schema designed for high-performance
 
 ## 🧪 Testing and Quality Assurance
 
-CloudPulse maintains a high-quality codebase with **Test-Driven Development (TDD)** principles. The backend contains a robust suite of unit and integration tests using **JUnit 5** and **Mockito** with 100% build verification.
+NexusOps maintains a high-quality codebase with **Test-Driven Development (TDD)** principles. The backend contains a robust suite of unit and integration tests using **JUnit 5** and **Mockito** with 100% build verification.
 
 ### Running Backend Tests
 Execute the test suite using Maven:

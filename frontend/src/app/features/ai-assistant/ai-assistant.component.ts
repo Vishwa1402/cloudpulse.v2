@@ -29,7 +29,7 @@ type Message = {
             <span class="w-3 h-3 rounded-full bg-rose-500"></span>
             <span class="w-3 h-3 rounded-full bg-amber-500"></span>
             <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-            <span class="text-xs font-mono text-slate-400 ml-2">cloudpulse-ai-terminal v1.0.0</span>
+            <span class="text-xs font-mono text-slate-400 ml-2">nexusops-ai-terminal v1.0.0</span>
           </div>
           <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-500/20">Active Grounding Mode</span>
         </div>
@@ -40,7 +40,7 @@ type Message = {
           <div class="flex gap-3">
             <div class="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-xs font-bold text-white">AI</div>
             <div class="rounded-2xl bg-slate-900 border border-slate-800 p-4 max-w-[85%] text-slate-300">
-              <p class="text-emerald-400 font-semibold mb-1">✓ CloudPulse Autonomous Assistant ready.</p>
+              <p class="text-emerald-400 font-semibold mb-1">✓ NexusOps Autonomous Assistant ready.</p>
               <p class="text-sm">I have access to live Prometheus vector data. What performance metrics or anomalous node logs would you like me to analyze?</p>
             </div>
           </div>
@@ -141,7 +141,7 @@ export class AiAssistantComponent {
         error: (err) => {
           this.messages.push({
             sender: 'ai',
-            text: '[ERROR]\n- Downstream connection to CloudPulse telemetry daemon failed.\n- Verify that the Spring Boot backend server is hosted on port 8080.',
+            text: '[ERROR]\n- Downstream connection to NexusOps telemetry daemon failed.\n- Verify that the Spring Boot backend server is hosted on port 8080.',
             timestamp: new Date()
           });
           this.thinking = false;
