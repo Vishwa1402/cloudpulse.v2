@@ -6,6 +6,7 @@ C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpul
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\controller\AiChatController.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\controller\AuthController.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\controller\DashboardController.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\controller\IncidentController.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\controller\UserController.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\dto\AiChatRequest.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\dto\AiChatResponse.java
@@ -28,6 +29,7 @@ C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpul
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\service\CustomUserDetailsService.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\service\DashboardService.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\service\EmailService.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\service\IncidentDetectionService.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\service\JwtService.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\service\PrometheusService.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\service\UserService.java

@@ -1,6 +1,6 @@
 [Test Performed]
 Class: com.cloudpulse.backend.service.PrometheusServiceTest
-Time: 2026-05-18T17:12:35+05:30
+Time: 2026-05-18T17:15:17+05:30
 Status: SUCCESS
 Details:
 - testGetCpuUsage_Success: PASSED
@@ -14,7 +14,7 @@ Details:
 
 [Test Performed]
 Class: com.cloudpulse.backend.controller.DashboardControllerTest
-Time: 2026-05-18T17:12:35+05:30
+Time: 2026-05-18T17:15:17+05:30
 Status: SUCCESS
 Details:
 - testGetSummary_Success: PASSED
@@ -25,7 +25,7 @@ Details:
 
 [Test Performed]
 Class: com.cloudpulse.backend.service.DashboardServiceTest
-Time: 2026-05-18T17:12:35+05:30
+Time: 2026-05-18T17:15:17+05:30
 Status: SUCCESS
 Details:
 - testGetSummary_ReturnsCorrectMetrics: PASSED
@@ -36,13 +36,13 @@ Details:
 
 [Test Performed]
 Class: com.cloudpulse.backend.service.AiAnalysisServiceTest
-Time: 2026-05-18T17:12:35+05:30
+Time: 2026-05-18T17:15:17+05:30
 Status: SUCCESS
 Details:
-- generateIncidentAnalysis_CpuSpike_ReturnsCorrectSummary: PASSED (Verified precise [FACT] / [SUGGESTION] separation)
+- generateIncidentAnalysis_CpuSpike_ReturnsCorrectSummary: PASSED
 - generateIncidentAnalysis_MemorySpike_ReturnsCorrectSummary: PASSED
 - generateIncidentAnalysis_ErrorRateSpike_ReturnsCorrectSummary: PASSED
-- handleTelemetryChat_CpuQuery_RetrievesLiveCpu: PASSED (Verified Prometheus metrics integration in natural language replies)
+- handleTelemetryChat_CpuQuery_RetrievesLiveCpu: PASSED
 - handleTelemetryChat_HealthOverviewQuery_RetrievesAllTelemetry: PASSED
 - Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
 
@@ -50,18 +50,41 @@ Details:
 
 [Test Performed]
 Class: com.cloudpulse.backend.controller.AiChatControllerTest
-Time: 2026-05-18T17:12:35+05:30
+Time: 2026-05-18T17:15:17+05:30
 Status: SUCCESS
 Details:
-- chat_ValidQuery_ReturnsOkResponse: PASSED (Verified status code 200 OK and reply mapping)
-- chat_EmptyQuery_ReturnsBadRequest: PASSED (Verified status code 400 Bad Request on empty payloads)
+- chat_ValidQuery_ReturnsOkResponse: PASSED
+- chat_EmptyQuery_ReturnsBadRequest: PASSED
 - Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 
 ---
 
+[Test Performed]
+Class: com.cloudpulse.backend.service.IncidentDetectionServiceTest
+Time: 2026-05-18T17:15:17+05:30
+Status: SUCCESS
+Details:
+- monitorTelemetryMetrics_CpuSpikes_TriggersNewIncident: PASSED (Verified scheduler auto-detect, DB save, and WebSocket broadcast)
+- monitorTelemetryMetrics_CpuRecovers_AutoResolvesActiveIncident: PASSED (Verified auto-recovery and resolution times)
+- Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+---
+
+[Test Performed]
+Class: com.cloudpulse.backend.controller.IncidentControllerTest
+Time: 2026-05-18T17:15:17+05:30
+Status: SUCCESS
+Details:
+- getAllIncidents_ReturnsListOfIncidents: PASSED (Verified active and resolved logs returning)
+- resolveIncident_ActiveIncident_ResolvesAndBroadcasts: PASSED (Verified manual close capability and socket syncs)
+- resolveIncident_NonExistent_ReturnsNotFound: PASSED
+- Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
+
+---
+
 [Full Suite Results]
-Total tests run: 17
+Total tests run: 21
 Failures: 0
 Errors: 0
 Skipped: 0
-Status: BUILD SUCCESS (AI Command Assistant & Telemetry Chat fully operational and verified)
+Status: BUILD SUCCESS (Scheduled Incident Detection and Real-time Incident Controls fully verified)
