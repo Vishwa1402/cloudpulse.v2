@@ -84,7 +84,7 @@ export class BudgetsComponent implements OnInit {
 
   loadBudgets() {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', \`Bearer \${token}\`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     this.http.get<any[]>('http://localhost:8080/api/finance/budgets', { headers })
       .subscribe({
         next: (data) => this.budgets = data,
@@ -96,7 +96,7 @@ export class BudgetsComponent implements OnInit {
     if (!this.newBudget.monthlyAmount) return;
     
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', \`Bearer \${token}\`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     this.http.post('http://localhost:8080/api/finance/budgets', this.newBudget, { headers })
       .subscribe({
         next: (data) => {

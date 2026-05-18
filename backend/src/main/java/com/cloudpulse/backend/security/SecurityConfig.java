@@ -42,7 +42,6 @@ public class SecurityConfig {
 
                         // Role-based endpoints
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/finance/**").hasAnyRole("ADMIN", "FINANCE")
 
                         // secure everything else
                         .anyRequest().authenticated()

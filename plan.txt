@@ -1,130 +1,396 @@
-1. Real-Time Cost Monitoring
+Since you already have:
 
-Instead of static data:
+* Login/Register
+* JWT/Auth setup
+* PostgreSQL connection
+* Spring Boot backend
+* Angular frontend
 
-live cloud spend updates
-daily / weekly / monthly trends
-auto-refresh dashboard
-spikes in cost highlighted
-Tech
-Spring Scheduler
-WebSockets
-Chart.js / ECharts
-Example
+you’ve already completed the foundation layer.
 
-“EC2 spend increased 38% today.”
+Now the best approach is to build this project in phases like a real engineering team would.
 
-This instantly feels more advanced than CRUD.
+# Project Goal
 
-2. AI-Based Cost Anomaly Detection
+Build an **AI-Powered Incident Command Center** that:
 
-This is a huge differentiator.
+* monitors services in real time
+* detects issues
+* visualizes metrics
+* creates incidents
+* uses AI for summaries/root-cause hints
 
-Your app can:
+---
 
-detect unusual spending
-identify idle resources
-warn about over-utilization
-Example
+# Recommended Tech Stack
 
-“Storage costs suddenly increased after deployment.”
+## Backend
 
-Algorithms
-Moving Average
-Isolation Forest
-Z-score anomaly detection
+* Java + Spring Boot
+* Spring Security + JWT
+* PostgreSQL
+* WebSocket (real-time updates)
 
-This becomes an intelligent system, not just a dashboard.
+## Monitoring
 
-3. Cost Forecasting
+* Prometheus
+* Grafana
+* Micrometer
+* Spring Boot Actuator
 
-Predict future cloud bills.
+## Frontend
 
-Example
+* Angular
+* Tailwind / Angular Material
+* Charts
 
-“Estimated AWS spend for next month: ₹48,000”
+## AI Layer
 
-ML Models
-Linear Regression
-ARIMA
-Prophet
+* OpenAI API or local AI later
 
-This is resume gold because it combines:
+## DevOps
 
-AI
-cloud
-analytics
-forecasting
-4. Multi-Cloud Support
+* Docker
+* Docker Compose
 
-Instead of only AWS:
+---
 
-Support:
+# SYSTEM ARCHITECTURE
 
-AWS
-Azure
-GCP
-Features
-compare providers
-unified dashboard
-provider-wise cost charts
+```text id="x62h9v"
+Monitored Apps
+       ↓
+Spring Actuator Metrics
+       ↓
+Prometheus
+       ↓
+Your Spring Boot Backend
+       ↓
+Incident Engine + AI Analysis
+       ↓
+Angular Dashboard
+```
 
-This makes your app enterprise-style.
+---
 
-5. Budget Alerts & Notifications
+# PHASE 1 — Build the Monitoring Foundation
 
-Users can:
+(Highest Priority)
 
-set budgets
-receive alerts on overspending
-Example
+## Goal
 
-“80% of monthly budget reached.”
+Get REAL metrics into your dashboard.
 
-Add
-email alerts
-Slack/Discord alerts
-push notifications
-6. Resource Optimization Recommendations
+---
 
-This is extremely impressive.
+## Step 1 — Create a Demo Service
 
-Example Suggestions
-“Downsize EC2 instance”
-“Delete unused storage bucket”
-“CPU usage below 5% for 7 days”
+Make a simple Spring Boot app called:
 
-Now your app becomes:
+```text id="s8j4yy"
+cloudpulse-demo-service
+```
 
-“Cloud Advisor”
+This simulates a production app.
 
-not just “Cloud Viewer.”
+Add:
 
-7. Role-Based Access Control (RBAC)
+* REST APIs
+* fake delays
+* random errors
+* CPU-heavy endpoints
 
-Different users:
+---
 
-Admin
-DevOps Engineer
-Finance Team
-Viewer
-Features
-permission-based dashboards
-audit logs
-access restrictions
+## Step 2 — Add Actuator + Prometheus
 
-This makes it enterprise-grade.
+In demo service:
 
-8. Interactive Analytics Dashboard
+```xml id="mlg9nm"
+spring-boot-starter-actuator
+micrometer-registry-prometheus
+```
+
+Expose:
+
+```bash id="79f18t"
+/actuator/prometheus
+```
+
+---
+
+## Step 3 — Setup Prometheus
+
+Prometheus scrapes metrics every few seconds.
+
+Create:
+
+```yaml id="m79l13"
+scrape_configs:
+  - job_name: 'demo-service'
+    metrics_path: '/actuator/prometheus'
+```
+
+Now you have REAL metrics.
+
+---
+
+## Step 4 — Verify Metrics
+
+Test:
+
+```bash id="m0l8zh"
+http://localhost:8080/actuator/prometheus
+```
+
+You should see metrics like:
+
+* JVM memory
+* CPU
+* HTTP requests
+* response times
+
+---
+
+# PHASE 2 — Dashboard Backend APIs
+
+Now connect Prometheus to YOUR backend.
+
+---
+
+## Step 5 — Create Prometheus Service Layer
+
+Backend calls Prometheus API:
+
+```bash id="sj4d2s"
+http://localhost:9090/api/v1/query
+```
+
+Example query:
+
+```text id="r2jlwm"
+rate(http_server_requests_seconds_count[1m])
+```
+
+---
+
+## Step 6 — Create Dashboard APIs
+
+Endpoints:
+
+```text id="gg3v5o"
+/api/dashboard/summary
+/api/metrics/cpu
+/api/metrics/memory
+/api/incidents
+```
+
+Return REAL Prometheus data.
+
+---
+
+# PHASE 3 — Frontend Dashboard
+
+This is where project quality becomes visible.
+
+---
+
+## Dashboard Features
+
+### Overview Cards
+
+* CPU %
+* Memory %
+* Error Rate
+* Active Alerts
+* Requests/sec
+
+---
+
+## Graphs
 
 Use:
 
-drill-down charts
-filters
-custom date ranges
-service-wise analysis
-Metrics
-cost by service
-cost by team
-utilization efficiency
-trend heatmaps
+* ng2-charts
+* ApexCharts
+* ECharts
+
+Charts:
+
+* CPU over time
+* API latency
+* error spikes
+* request volume
+
+---
+
+## Service Health Table
+
+| Service | Status | CPU | Errors |
+| ------- | ------ | --- | ------ |
+
+---
+
+# PHASE 4 — Incident Engine
+
+This makes it NOT a CRUD app.
+
+---
+
+## Incident Detection Rules
+
+Example:
+
+```text id="o9k9s8"
+IF CPU > 80% FOR 2 minutes
+→ Create Incident
+```
+
+Other rules:
+
+* response time spikes
+* memory leak
+* high error rate
+* service down
+
+Store incidents in PostgreSQL.
+
+---
+
+## Incident Entity
+
+```java id="0nk5n9"
+Incident
+- id
+- serviceName
+- severity
+- status
+- description
+- detectedAt
+- resolvedAt
+```
+
+---
+
+# PHASE 5 — Real-Time Updates
+
+Use:
+
+* WebSockets
+* STOMP
+
+Dashboard updates automatically.
+
+This feels very production-grade.
+
+---
+
+# PHASE 6 — AI Layer
+
+This becomes your standout feature.
+
+---
+
+## AI Features
+
+### 1. Incident Summary
+
+Input:
+
+* metrics
+* logs
+* alerts
+
+AI output:
+
+```text id="6o8tku"
+High CPU usage detected in auth-service.
+Possible cause: increased request load or memory leak.
+```
+
+---
+
+## 2. Root Cause Suggestions
+
+Example:
+
+* database latency
+* thread exhaustion
+* traffic spike
+
+---
+
+## 3. AI Chat Assistant
+
+Ask:
+
+```text id="5h08wh"
+Why did response time spike?
+```
+
+AI answers using metrics.
+
+---
+
+# PHASE 7 — Dockerize Everything
+
+Containers:
+
+* frontend
+* backend
+* postgres
+* prometheus
+* grafana
+* demo-service
+
+This is VERY resume-worthy.
+
+---
+
+# PHASE 8 — Production-Level Features
+
+After MVP works:
+
+## Add:
+
+* role-based access
+* multi-project monitoring
+* alert notification system
+* Slack/Email alerts
+* log ingestion
+* service dependency graph
+* Kubernetes support
+* OpenTelemetry traces
+
+---
+
+---
+
+# What to focus on MOST
+
+Priority order:
+
+1. Real metrics
+2. Dashboard visuals
+3. Incident detection
+4. AI summaries
+5. Docker deployment
+
+Those 5 together already make this a strong project.
+
+---
+
+# What interviewers will like
+
+This project demonstrates:
+
+* backend engineering
+* distributed systems basics
+* observability
+* cloud-native architecture
+* monitoring pipelines
+* DevOps concepts
+* real-time systems
+* AI integration
+
+which is significantly more advanced than normal CRUD projects.

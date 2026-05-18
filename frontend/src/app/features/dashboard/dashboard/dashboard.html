@@ -1,58 +1,227 @@
 <div class="space-y-6">
-  <div>
-    <h2 class="text-title-md font-bold text-gray-800 dark:text-white/90">CloudPulse Dashboard</h2>
-  </div>
-
-  <div *ngIf="summary?.anomalyAlert" class="rounded-lg bg-orange-50 p-4 border border-orange-200 dark:bg-orange-900/20 dark:border-orange-800 flex items-center gap-3">
-    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+  <!-- Top Header -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div>
-      <h4 class="font-semibold text-orange-800 dark:text-orange-400">Anomaly Detected</h4>
-      <p class="text-sm text-orange-700 dark:text-orange-300">{{ summary.anomalyAlert }}</p>
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+        </span>
+        Incident Command Center
+      </h2>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Real-time platform telemetry and operational health summary</p>
+    </div>
+    <div class="flex items-center gap-2 rounded-xl bg-emerald-50 px-3 py-1.5 border border-emerald-100 text-xs font-semibold text-emerald-800 dark:bg-emerald-950/20 dark:border-emerald-800 dark:text-emerald-400">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+      SYSTEM STATUS: OPERATIONAL
     </div>
   </div>
 
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6">
-    <!-- Monthly Cost -->
-    <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
-      <div class="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-        <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+  <!-- Main Telemetry Metrics Grid -->
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-5 md:gap-6">
+    <!-- CPU Usage -->
+    <div class="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03]">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-center w-10 h-10 bg-brand-50 rounded-xl dark:bg-brand-950/20">
+          <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+        </div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-950/20 dark:text-emerald-400">Live</span>
       </div>
-      <div class="mt-5">
-        <span class="text-sm text-gray-500 dark:text-gray-400">Monthly Cost</span>
-        <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">${{ summary?.monthlyCost || 0 }}</h4>
+      <div class="mt-4">
+        <span class="text-xs font-medium text-gray-500 dark:text-gray-400">CPU Utilization</span>
+        <h4 class="mt-1 font-bold text-gray-900 text-title-md dark:text-white">{{ summary?.cpuUsage || 0 | number:'1.1-2' }}%</h4>
       </div>
-    </div>
-
-    <!-- Active Resources -->
-    <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
-      <div class="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-        <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
-      </div>
-      <div class="mt-5">
-        <span class="text-sm text-gray-500 dark:text-gray-400">Active Resources</span>
-        <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ summary?.activeResources || 0 }}</h4>
-      </div>
-    </div>
-
-    <!-- Alerts -->
-    <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
-      <div class="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-        <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-      </div>
-      <div class="mt-5">
-        <span class="text-sm text-gray-500 dark:text-gray-400">Alerts</span>
-        <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ summary?.alerts || 0 }}</h4>
+      <!-- Custom progress indicator -->
+      <div class="w-full bg-gray-100 dark:bg-gray-800 h-1.5 rounded-full mt-3 overflow-hidden">
+        <div class="h-full rounded-full transition-all duration-500" 
+             [style.width.%]="summary?.cpuUsage || 0"
+             [ngClass]="{'bg-emerald-500': (summary?.cpuUsage || 0) < 60, 'bg-amber-500': (summary?.cpuUsage || 0) >= 60 && (summary?.cpuUsage || 0) < 80, 'bg-rose-500': (summary?.cpuUsage || 0) >= 80}">
+        </div>
       </div>
     </div>
 
-    <!-- Savings -->
-    <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
-      <div class="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-        <svg class="w-6 h-6 text-success-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+    <!-- Memory Allocation -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03]">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-center w-10 h-10 bg-blue-50 rounded-xl dark:bg-blue-950/20">
+          <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+        </div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-950/20 dark:text-emerald-400">Live</span>
       </div>
-      <div class="mt-5">
-        <span class="text-sm text-gray-500 dark:text-gray-400">Savings</span>
-        <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">${{ summary?.savings || 0 }}</h4>
+      <div class="mt-4">
+        <span class="text-xs font-medium text-gray-500 dark:text-gray-400">Memory Allocation</span>
+        <h4 class="mt-1 font-bold text-gray-900 text-title-md dark:text-white">{{ summary?.memoryUsage || 0 | number:'1.1-2' }}%</h4>
+      </div>
+      <!-- Memory progress -->
+      <div class="w-full bg-gray-100 dark:bg-gray-800 h-1.5 rounded-full mt-3 overflow-hidden">
+        <div class="h-full rounded-full transition-all duration-500" 
+             [style.width.%]="summary?.memoryUsage || 0"
+             [ngClass]="{'bg-emerald-500': (summary?.memoryUsage || 0) < 70, 'bg-amber-500': (summary?.memoryUsage || 0) >= 70 && (summary?.memoryUsage || 0) < 90, 'bg-rose-500': (summary?.memoryUsage || 0) >= 90}">
+        </div>
+      </div>
+    </div>
+
+    <!-- Requests Per Second -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03]">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-center w-10 h-10 bg-indigo-50 rounded-xl dark:bg-indigo-950/20">
+          <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        </div>
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+        </span>
+      </div>
+      <div class="mt-4">
+        <span class="text-xs font-medium text-gray-500 dark:text-gray-400">Request Rate</span>
+        <h4 class="mt-1 font-bold text-gray-900 text-title-md dark:text-white">{{ summary?.requestsPerSecond || 0 | number:'1.0-0' }} RPS</h4>
+      </div>
+      <p class="text-xs text-gray-400 mt-3 flex items-center gap-1">
+        <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+        Normal request volume
+      </p>
+    </div>
+
+    <!-- Error Rate -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03]">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-center w-10 h-10 bg-rose-50 rounded-xl dark:bg-rose-950/20">
+          <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+        </div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded-full"
+              [ngClass]="{'bg-emerald-50 text-emerald-700': (summary?.errorRate || 0) < 1.0, 'bg-rose-50 text-rose-700': (summary?.errorRate || 0) >= 1.0}">
+          {{ (summary?.errorRate || 0) < 1.0 ? 'Healthy' : 'Spiking' }}
+        </span>
+      </div>
+      <div class="mt-4">
+        <span class="text-xs font-medium text-gray-500 dark:text-gray-400">HTTP Error Rate</span>
+        <h4 class="mt-1 font-bold text-gray-900 text-title-md dark:text-white">{{ summary?.errorRate || 0 | number:'1.1-2' }}%</h4>
+      </div>
+      <!-- Error indicator -->
+      <div class="w-full bg-gray-100 dark:bg-gray-800 h-1.5 rounded-full mt-3 overflow-hidden">
+        <div class="h-full rounded-full transition-all duration-500" 
+             [style.width.%]="(summary?.errorRate || 0) * 10" 
+             [ngClass]="{'bg-emerald-500': (summary?.errorRate || 0) < 1.0, 'bg-rose-500': (summary?.errorRate || 0) >= 1.0}">
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Alerts -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03]">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-center w-10 h-10 bg-amber-50 rounded-xl dark:bg-amber-950/20">
+          <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+        </div>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded-full"
+              [ngClass]="{'bg-gray-100 text-gray-700': (summary?.activeAlerts || 0) === 0, 'bg-rose-100 text-rose-700': (summary?.activeAlerts || 0) > 0}">
+          {{ (summary?.activeAlerts || 0) === 0 ? 'Clear' : 'Triggered' }}
+        </span>
+      </div>
+      <div class="mt-4">
+        <span class="text-xs font-medium text-gray-500 dark:text-gray-400">Active Incidents</span>
+        <h4 class="mt-1 font-bold text-gray-900 text-title-md dark:text-white">{{ summary?.activeAlerts || 0 }} Alerts</h4>
+      </div>
+      <p class="text-xs text-gray-400 mt-3">
+        No unacknowledged issues
+      </p>
+    </div>
+  </div>
+
+  <!-- Incident Log & Interactive Load Spiker -->
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <!-- Simulated Active Incidents -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+      <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Active System Incidents</h3>
+      
+      <div class="space-y-4">
+        <!-- Conditional High CPU incident -->
+        <div *ngIf="(summary?.cpuUsage || 0) >= 80" class="flex items-start gap-3 p-4 rounded-xl border border-rose-200 bg-rose-50/50 dark:border-rose-900/30 dark:bg-rose-950/10">
+          <div class="p-1.5 rounded-lg bg-rose-100 text-rose-700 dark:bg-rose-900/20 dark:text-rose-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-sm text-rose-900 dark:text-rose-400">CRITICAL: High CPU Load Spike</h4>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300">HIGH</span>
+            </div>
+            <p class="text-xs text-rose-700 dark:text-rose-300/80 mt-1">CPU utilization has spiked past 80% (Currently {{ summary?.cpuUsage | number:'1.1-2' }}%). Performance degradation expected.</p>
+            <span class="text-[10px] text-rose-500 mt-2 block">Triggered just now</span>
+          </div>
+        </div>
+
+        <!-- Conditional Error incident -->
+        <div *ngIf="(summary?.errorRate || 0) >= 1.0" class="flex items-start gap-3 p-4 rounded-xl border border-rose-200 bg-rose-50/50 dark:border-rose-900/30 dark:bg-rose-950/10">
+          <div class="p-1.5 rounded-lg bg-rose-100 text-rose-700 dark:bg-rose-900/20 dark:text-rose-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-sm text-rose-900 dark:text-rose-400">WARNING: High HTTP Error Rate</h4>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300">MEDIUM</span>
+            </div>
+            <p class="text-xs text-rose-700 dark:text-rose-300/80 mt-1">Server response errors peaked to {{ summary?.errorRate | number:'1.1-2' }}%. Clients experiencing intermittent HTTP 500 responses.</p>
+            <span class="text-[10px] text-rose-500 mt-2 block">Triggered just now</span>
+          </div>
+        </div>
+
+        <!-- Normal operational indicator if all healthy -->
+        <div *ngIf="(summary?.cpuUsage || 0) < 80 && (summary?.errorRate || 0) < 1.0" class="flex flex-col items-center justify-center py-12 text-center">
+          <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-500 dark:bg-emerald-950/20 mb-4 animate-pulse">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white text-base">All Scanned Nodes Healthy</h4>
+          <p class="text-xs text-gray-500 mt-1 max-w-[280px]">No anomalies or performance spikes detected. Platform operates fully within healthy SLA thresholds.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Performance Spiking Tool -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+      <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Operational Stress Injector</h3>
+      <p class="text-xs text-gray-500 mb-4">Simulate outages and performance bottlenecks on your monitored microservice nodes to verify how CloudPulse automatically logs incidents.</p>
+
+      <div class="grid grid-cols-2 gap-4">
+        <!-- CPU spike card -->
+        <a href="http://localhost:8081/api/cpu?seconds=15" target="_blank" class="p-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-rose-50 hover:border-rose-300 dark:border-gray-800 dark:bg-gray-900/30 transition-all group flex flex-col justify-between h-32">
+          <div class="flex items-center justify-between">
+            <span class="p-2 bg-rose-100 rounded-lg text-rose-600 dark:bg-rose-950/30 dark:text-rose-400 group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </span>
+            <span class="text-[10px] text-gray-400 font-bold group-hover:text-rose-500">Inject Load</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="font-bold text-xs text-gray-800 dark:text-white group-hover:text-rose-800 dark:group-hover:text-rose-400">Trigger CPU Stress</h4>
+            <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Spikes CPU on port 8081 for 15s</p>
+          </div>
+        </a>
+
+        <!-- Latency card -->
+        <a href="http://localhost:8081/api/delay?ms=1500" target="_blank" class="p-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-amber-50 hover:border-amber-300 dark:border-gray-800 dark:bg-gray-900/30 transition-all group flex flex-col justify-between h-32">
+          <div class="flex items-center justify-between">
+            <span class="p-2 bg-amber-100 rounded-lg text-amber-600 dark:bg-amber-950/30 dark:text-amber-400 group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </span>
+            <span class="text-[10px] text-gray-400 font-bold group-hover:text-amber-500">Inject Latency</span>
+          </div>
+          <div class="mt-4">
+            <h4 class="font-bold text-xs text-gray-800 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-400">Trigger Latency Spike</h4>
+            <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Introduces 1.5s delay to mock node</p>
+          </div>
+        </a>
+
+        <!-- HTTP 500 error card -->
+        <a href="http://localhost:8081/api/error" target="_blank" class="p-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-red-50 hover:border-red-300 dark:border-gray-800 dark:bg-gray-900/30 transition-all group flex flex-col justify-between h-32 col-span-2">
+          <div class="flex items-center justify-between">
+            <span class="p-2 bg-red-100 rounded-lg text-red-600 dark:bg-red-950/30 dark:text-red-400 group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            </span>
+            <span class="text-[10px] text-gray-400 font-bold group-hover:text-red-500">Trigger Errors</span>
+          </div>
+          <div class="mt-2">
+            <h4 class="font-bold text-xs text-gray-800 dark:text-white group-hover:text-red-800 dark:group-hover:text-red-400">Trigger Server Error Spikes</h4>
+            <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Mock service responds with HTTP 500 responses intermittently to trigger alert thresholds.</p>
+          </div>
+        </a>
       </div>
     </div>
   </div>

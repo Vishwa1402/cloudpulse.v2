@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DashboardSummaryResponse {
-    private int monthlyCost;
-    private int activeResources;
-    private int alerts;
-    private int savings;
-    private String anomalyAlert;
+    private double cpuUsage;
+    private double memoryUsage;
+    private double errorRate;
+    private int activeAlerts;
+    private double requestsPerSecond;
 }

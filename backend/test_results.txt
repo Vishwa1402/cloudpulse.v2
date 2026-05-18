@@ -1,0 +1,42 @@
+[Test Performed]
+Class: com.cloudpulse.backend.service.PrometheusServiceTest
+Time: 2026-05-18T16:31:33+05:30
+Status: SUCCESS
+Details:
+- testGetCpuUsage_Success: PASSED (Verified correct scaling and parsing of raw Prometheus float metrics)
+- testGetMemoryUsage_Success: PASSED (Verified correct scaling and parsing of raw Prometheus float metrics)
+- testGetRequestsPerSecond_Success: PASSED (Verified parsing with complex URL-encoded metric query containing special characters)
+- testGetErrorRate_Success: PASSED (Verified basic error rate parsing)
+- testGetMetric_ErrorResponse_ReturnsZero: PASSED (Verified graceful error handling returning 0.0 on standard connection failures)
+- Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+
+---
+
+[Test Performed]
+Class: com.cloudpulse.backend.controller.DashboardControllerTest
+Time: 2026-05-18T16:42:39+05:30
+Status: SUCCESS
+Details:
+- testGetSummary_Success: PASSED (Verified correct response payload mapping and metric extraction in controller layer)
+- testGetSummary_ServiceThrowsException_PropagatesException: PASSED (Verified exception propagation in controller layer for global handling)
+- Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+---
+
+[Test Performed]
+Class: com.cloudpulse.backend.service.DashboardServiceTest
+Time: 2026-05-18T16:42:39+05:30
+Status: SUCCESS
+Details:
+- testGetSummary_ReturnsCorrectMetrics: PASSED (Verified service correctly orchestrates querying all 4 Prometheus metrics via PrometheusService)
+- testGetSummary_PrometheusThrowsException_PropagatesException: PASSED (Verified Prometheus service exception handling and propagation in DashboardService)
+- Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+---
+
+[Full Suite Results]
+Total tests run: 10
+Failures: 0
+Errors: 0
+Skipped: 0
+Status: BUILD SUCCESS (Cost-optimization legacy code fully removed)

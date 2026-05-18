@@ -1,1 +1,4 @@
+com\cloudpulse\backend\service\PrometheusServiceTest.class
+com\cloudpulse\backend\service\DashboardServiceTest.class
 com\cloudpulse\backend\BackendApplicationTests.class
+com\cloudpulse\backend\controller\DashboardControllerTest.class
