@@ -26,6 +26,10 @@ public class Project {
     @JoinColumn(name = "organization_id", referencedColumnName = "id", nullable = false)
     private Organization organization;
 
+    private String environmentType;
+
+    private Long createdBy;
+
     @Column(nullable = false)
     private LocalDateTime createdAt;
 

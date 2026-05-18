@@ -1,0 +1,109 @@
+<div class="landing-container bg-slate-950 text-white min-h-screen font-sans antialiased overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+  
+  <!-- Navigation Header -->
+  <header class="navbar border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50 px-6 lg:px-12 py-4 flex items-center justify-between">
+    <div class="flex items-center space-x-3 cursor-pointer" routerLink="/">
+      <div class="logo-icon bg-indigo-600 rounded-lg p-2 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <span class="text-xl font-bold tracking-wider">CP</span>
+      </div>
+      <span class="logo-text text-xl font-extrabold tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">CloudPulse</span>
+    </div>
+
+    <!-- Nav Items (Desktop) -->
+    <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+      <a class="nav-link hover:text-white transition duration-200">Product</a>
+      <a class="nav-link hover:text-white transition duration-200">Solutions</a>
+      <a class="nav-link hover:text-white transition duration-200">Integrations</a>
+      <a class="nav-link hover:text-white transition duration-200">Resources</a>
+      <a class="nav-link hover:text-white transition duration-200">Pricing</a>
+    </nav>
+
+    <!-- CTAs -->
+    <div class="flex items-center space-x-4">
+      <a routerLink="/login" class="text-sm font-semibold hover:text-indigo-400 transition duration-200">Login</a>
+      <a routerLink="/register" class="btn-trial text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-lg shadow-lg shadow-indigo-500/25 transition duration-200 flex items-center space-x-1">
+        <span>Start free trial</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center relative px-6 py-20 lg:py-32 flex flex-col items-center justify-center overflow-hidden">
+    <!-- Glow Background Effects -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="absolute top-1/3 left-1/3 w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+    <div class="max-w-4xl mx-auto z-10 relative space-y-8">
+      <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase shadow-inner shadow-indigo-500/5">
+        <span>🚀 Version 2.0 Live</span>
+      </div>
+
+      <h1 class="hero-title text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+        Modern <span class="bg-gradient-to-r from-indigo-400 via-indigo-200 to-purple-400 bg-clip-text text-transparent">Incident Management</span> for DevOps
+      </h1>
+
+      <p class="hero-subtitle text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto font-medium">
+        Enterprise-grade telemetry intelligence, on-call alert routing, and metrics-grounded AI diagnostic assistance starting at $4.99 per user / month.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        <a routerLink="/register" class="btn-primary w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-8 py-4 rounded-xl shadow-xl shadow-indigo-500/20 transition duration-200">
+          Start free trial
+        </a>
+        <a class="btn-secondary w-full sm:w-auto bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 font-semibold px-8 py-4 rounded-xl transition duration-200 cursor-pointer">
+          Talk to an expert
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By Section -->
+  <section class="trusted-section border-y border-slate-900/60 bg-slate-950/40 py-10 text-center relative z-10">
+    <p class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-6">Trusted by leading DevOps teams</p>
+    <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 opacity-40 hover:opacity-60 transition duration-300 max-w-5xl mx-auto px-6">
+      <span class="font-extrabold text-lg tracking-wider">BANORTE</span>
+      <span class="font-bold text-lg">advania</span>
+      <span class="font-extrabold text-xl tracking-tight">⬡ Stord</span>
+      <span class="font-bold text-lg">MISTRAL AI</span>
+      <span class="font-bold text-lg tracking-wide">Rootline</span>
+      <span class="font-semibold text-lg">Compono</span>
+      <span class="font-extrabold text-lg">Flip</span>
+      <span class="font-bold text-lg">Itron</span>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="features-section py-24 px-6 lg:px-12 max-w-7xl mx-auto relative z-10">
+    <div class="text-center space-y-4 mb-16">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Built for CloudScale Incident Response</h2>
+      <p class="text-slate-400 max-w-xl mx-auto font-medium">CloudPulse provides complete, high-fidelity monitoring and AI ground truth metrics to end outages fast.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div *ngFor="let feat of features" class="feature-card border border-slate-900/80 bg-slate-950/60 hover:bg-slate-900/40 hover:border-slate-800 p-8 rounded-2xl transition duration-300 space-y-4">
+        <div class="icon-box text-3xl">{{ feat.icon }}</div>
+        <h3 class="text-xl font-bold text-white">{{ feat.title }}</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">{{ feat.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section py-20 px-6 lg:px-12 bg-slate-950/30 border-t border-slate-900 relative z-10">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-center text-3xl font-extrabold tracking-tight mb-16">Loved by Engineers & Leaders</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div *ngFor="let t of testimonials" class="testimonial-card border border-slate-900 bg-slate-900/30 p-8 rounded-2xl space-y-4 italic relative">
+          <span class="absolute top-4 right-6 text-6xl text-indigo-500/10 font-serif">“</span>
+          <p class="text-slate-300 relative z-10 leading-relaxed">"{{ t.quote }}"</p>
+          <p class="text-sm font-bold text-indigo-400 not-italic">— {{ t.author }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer border-t border-slate-900 bg-slate-950 py-12 px-6 text-center text-sm text-slate-500">
+    <p>© 2026 CloudPulse Inc. All rights reserved. Built for modern SRE and DevOps telemetry operations.</p>
+  </footer>
+</div>

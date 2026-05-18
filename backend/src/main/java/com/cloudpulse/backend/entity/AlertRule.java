@@ -22,6 +22,14 @@ public class AlertRule {
     @Column(nullable = false)
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "service_id")
+    private Service service;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private boolean active = true;
+
     @Column(nullable = false)
     private String metric; // CPU, MEMORY, ERROR_RATE, LATENCY
 

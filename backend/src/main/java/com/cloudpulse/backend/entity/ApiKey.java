@@ -8,39 +8,29 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "services")
+@Table(name = "api_keys")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Service {
+public class ApiKey {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false)
-    private Project project;
+    @JoinColumn(name = "organization_id", referencedColumnName = "id", nullable = false)
+    private Organization organization;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "environment_id", referencedColumnName = "id")
-    private Environment environment;
-
-    private String metricsUrl;
-
-    private String healthUrl;
+    @Column(nullable = false, unique = true)
+    private String keyHash;
 
     @Builder.Default
     @Column(nullable = false)
-    private String status = "ACTIVE";
+    private boolean active = true;
 
-    private Long createdBy;
-
-    private String description;
+    private LocalDateTime expiresAt;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;

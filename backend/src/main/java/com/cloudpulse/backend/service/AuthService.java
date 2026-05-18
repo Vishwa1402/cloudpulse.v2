@@ -15,6 +15,9 @@ public class AuthService {
     private UserRepository repo;
 
     @Autowired
+    private com.cloudpulse.backend.repository.OrganizationRepository organizationRepo;
+
+    @Autowired
     private PasswordEncoder encoder;
 
     @Autowired
@@ -25,6 +28,30 @@ public class AuthService {
         user.setName(req.name);
         user.setEmail(req.email);
         user.setPassword(encoder.encode(req.password));
+
+        // Resolve or create Organization
+        String orgName = req.organizationName != null && !req.organizationName.trim().isEmpty() 
+            ? req.organizationName.trim() 
+            : "Default Organization";
+        
+        com.cloudpulse.backend.entity.Organization org = organizationRepo.findByName(orgName)
+            .orElseGet(() -> organizationRepo.save(
+                com.cloudpulse.backend.entity.Organization.builder()
+                    .name(orgName)
+                    .build()
+            ));
+        user.setOrganization(org);
+
+        // Resolve and map user Role
+        com.cloudpulse.backend.entity.Role userRole = com.cloudpulse.backend.entity.Role.VIEWER;
+        if (req.role != null) {
+            try {
+                userRole = com.cloudpulse.backend.entity.Role.valueOf(req.role.toUpperCase().trim());
+            } catch (IllegalArgumentException e) {
+                // Maintain default Viewer role on mismatch
+            }
+        }
+        user.setRole(userRole);
 
         return repo.save(user);
     }

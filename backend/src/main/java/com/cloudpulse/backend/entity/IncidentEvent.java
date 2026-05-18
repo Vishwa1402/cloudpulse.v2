@@ -26,6 +26,10 @@ public class IncidentEvent {
     @Column(nullable = false, length = 1000)
     private String eventDescription;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "performed_by")
+    private User performedBy;
+
     @Column(nullable = false)
     private LocalDateTime createdAt;
 

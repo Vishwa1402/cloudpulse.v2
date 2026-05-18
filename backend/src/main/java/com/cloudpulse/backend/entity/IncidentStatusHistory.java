@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "notifications")
+@Table(name = "incident_status_history")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notification {
+public class IncidentStatusHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,21 +23,23 @@ public class Notification {
     @JoinColumn(name = "incident_id", referencedColumnName = "id", nullable = false)
     private Incident incident;
 
-    @Column(nullable = false, length = 1000)
-    private String message;
+    @Column(name = "old_status")
+    private String oldStatus;
 
-    @Column(nullable = false)
-    private String status; // SENT, FAILED
+    @Column(name = "new_status", nullable = false)
+    private String newStatus;
 
-    @Builder.Default
-    @Column(nullable = false)
-    private Integer deliveryAttempts = 1;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "changed_by", referencedColumnName = "id")
+    private User changedBy;
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "changed_at", nullable = false)
+    private LocalDateTime changedAt;
 
     @PrePersist
     protected void onCreate() {
-        createdAt = LocalDateTime.now();
+        if (changedAt == null) {
+            changedAt = LocalDateTime.now();
+        }
     }
 }

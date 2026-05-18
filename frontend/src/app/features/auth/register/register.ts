@@ -15,6 +15,8 @@ export class RegisterComponent {
   name = '';
   email = '';
   password = '';
+  organizationName = '';
+  role = 'VIEWER';
 
   constructor(private auth: AuthService) {}
 
@@ -22,7 +24,9 @@ export class RegisterComponent {
     this.auth.register({
       name: this.name,
       email: this.email,
-      password: this.password
+      password: this.password,
+      organizationName: this.organizationName,
+      role: this.role
     }).subscribe(res => {
       console.log('User created:', res);
       alert('User inserted successfully!');

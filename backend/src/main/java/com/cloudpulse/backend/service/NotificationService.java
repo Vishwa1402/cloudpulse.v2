@@ -29,6 +29,10 @@ public class NotificationService {
             return;
         }
 
+        String serviceName = incident.getService() != null ? incident.getService().getName() : "Unknown Service";
+        String metricType = incident.getAlert() != null ? incident.getAlert().getMetricType() : "Unknown Metric";
+        Double metricValue = (incident.getAlert() != null && incident.getAlert().getCurrentValue() != null) ? incident.getAlert().getCurrentValue() : 0.0;
+
         String alertMessage = String.format(
                 "[CLOUDPULSE ALERT - %s]\n" +
                 "- Incident ID: #%d\n" +
@@ -39,9 +43,9 @@ public class NotificationService {
                 "- Status: %s",
                 eventType.toUpperCase(),
                 incident.getId(),
-                incident.getServiceName(),
-                incident.getMetricType(),
-                incident.getMetricValue() != null ? incident.getMetricValue() : 0.0,
+                serviceName,
+                metricType,
+                metricValue,
                 incident.getSeverity().name(),
                 incident.getDescription(),
                 incident.getStatus().name()

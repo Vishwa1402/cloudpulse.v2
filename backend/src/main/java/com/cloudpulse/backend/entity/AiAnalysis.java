@@ -23,6 +23,12 @@ public class AiAnalysis {
     @JoinColumn(name = "incident_id", referencedColumnName = "id", nullable = false)
     private Incident incident;
 
+    private Double confidenceScore;
+
+    private String analysisType;
+
+    private String modelUsed;
+
     @Column(nullable = false, length = 3000)
     private String analysisText;
 

@@ -22,6 +22,18 @@ public class AuditLog {
     @Column(nullable = false)
     private String action;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    private String entityType;
+
+    private Long entityId;
+
     @Column(nullable = false)
     private String performedBy;
 

@@ -1,0 +1,28 @@
+# Exclude planning, rules, and verification files from version control
+plan.txt
+AGENTS.md
+verify.md
+
+# Log files
+*.log
+backend/*.log
+backend/hs_err_pid*.log
+backend/replay_pid*.log
+
+# Angular build and dependency folders
+.angular/
+node_modules/
+dist/
+
+# Java / Maven build folders
+target/
+backend/target/
+
+# IDE/Editor metadata
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

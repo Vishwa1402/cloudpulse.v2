@@ -46,10 +46,11 @@ public class IncidentController {
             
             // Log to Audit Log
             try {
+                String serviceName = incident.getService() != null ? incident.getService().getName() : "Unknown Service";
                 auditLogService.log(
                     "INCIDENT_RESOLVE",
                     "OPERATOR",
-                    "Incident #" + id + " on service " + incident.getServiceName() + " was manually marked as RESOLVED."
+                    "Incident #" + id + " on service " + serviceName + " was manually marked as RESOLVED."
                 );
             } catch (Exception e) {
                 log.error("Failed to write manual resolution audit log: {}", e.getMessage());

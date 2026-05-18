@@ -42,8 +42,9 @@ class IncidentControllerTest {
 
     @Test
     void getAllIncidents_ReturnsListOfIncidents() {
+        com.cloudpulse.backend.entity.Service mockService = com.cloudpulse.backend.entity.Service.builder().name("cloudpulse-demo-service").build();
         List<Incident> sampleList = List.of(
-                Incident.builder().serviceName("cloudpulse-demo-service").build()
+                Incident.builder().service(mockService).build()
         );
         when(incidentRepository.findAllByOrderByDetectedAtDesc()).thenReturn(sampleList);
 
@@ -56,9 +57,10 @@ class IncidentControllerTest {
 
     @Test
     void resolveIncident_ActiveIncident_ResolvesAndBroadcasts() {
+        com.cloudpulse.backend.entity.Service mockService = com.cloudpulse.backend.entity.Service.builder().name("cloudpulse-demo-service").build();
         Incident activeIncident = Incident.builder()
                 .id(1L)
-                .serviceName("cloudpulse-demo-service")
+                .service(mockService)
                 .status(IncidentStatus.ACTIVE)
                 .build();
         when(incidentRepository.findById(1L)).thenReturn(Optional.of(activeIncident));
