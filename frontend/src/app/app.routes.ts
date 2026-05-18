@@ -22,24 +22,24 @@ export const routes: Routes = [
         canActivate: [authGuard]
       },
       {
-        path: 'budgets',
+        path: 'incident-rules',
         loadComponent: () =>
-          import('./features/budgets/budgets.component')
-            .then(m => m.BudgetsComponent),
+          import('./features/incident-rules/incident-rules.component')
+            .then(m => m.IncidentRulesComponent),
         canActivate: [authGuard]
       },
       {
-        path: 'billing/:provider',
+        path: 'ai-assistant',
         loadComponent: () =>
-          import('./features/billing/billing.component')
-            .then(m => m.BillingComponent),
+          import('./features/ai-assistant/ai-assistant.component')
+            .then(m => m.AiAssistantComponent),
         canActivate: [authGuard]
       },
       {
-        path: 'optimizer',
+        path: 'incident-console',
         loadComponent: () =>
-          import('./features/optimizer/optimizer.component')
-            .then(m => m.OptimizerComponent),
+          import('./features/incident-console/incident-console.component')
+            .then(m => m.IncidentConsoleComponent),
         canActivate: [authGuard]
       }
     ]

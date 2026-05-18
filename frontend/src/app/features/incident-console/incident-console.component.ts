@@ -16,7 +16,7 @@ type Incident = {
 };
 
 @Component({
-  selector: 'app-optimizer',
+  selector: 'app-incident-console',
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -144,7 +144,7 @@ type Incident = {
     </div>
   `
 })
-export class OptimizerComponent implements OnInit, OnDestroy {
+export class IncidentConsoleComponent implements OnInit, OnDestroy {
   incidents: Incident[] = [];
   expandedIncidentId: number | null = null;
   private intervalId: any;
@@ -153,7 +153,6 @@ export class OptimizerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadIncidents();
-    // Poll for real-time changes
     this.intervalId = setInterval(() => this.loadIncidents(), 3000);
   }
 

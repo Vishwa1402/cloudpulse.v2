@@ -12,7 +12,7 @@ type IncidentRule = {
 };
 
 @Component({
-  selector: 'app-budgets',
+  selector: 'app-incident-rules',
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
@@ -71,7 +71,7 @@ type IncidentRule = {
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let r of rules" class="border-b border-gray-100 dark:border-gray-800/50 hover:bg-gray-50 dark:hover:bg-white/[0.01]">
+              <tr *ngFor="let r of rules" class="border-b border-gray-100 dark:border-gray-800/50 hover:bg-gray-50 dark:hover:bg-white/[0.01] transition-all cursor-pointer">
                 <td class="py-4 px-4 font-semibold text-gray-800 dark:text-white/90">{{ r.metric }}</td>
                 <td class="py-4 px-4 text-rose-500 font-medium">> {{ r.threshold }}{{ r.metric === 'LATENCY' ? ' ms' : '%' }}</td>
                 <td class="py-4 px-4 text-gray-600 dark:text-gray-300">{{ r.durationMin }}m window</td>
@@ -92,7 +92,7 @@ type IncidentRule = {
     </div>
   `
 })
-export class BudgetsComponent implements OnInit {
+export class IncidentRulesComponent implements OnInit {
   rules: IncidentRule[] = [
     {
       id: 1,

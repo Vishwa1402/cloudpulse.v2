@@ -10,7 +10,7 @@ type Message = {
 };
 
 @Component({
-  selector: 'app-billing',
+  selector: 'app-ai-assistant',
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
@@ -93,7 +93,7 @@ type Message = {
     </div>
   `
 })
-export class BillingComponent {
+export class AiAssistantComponent {
   messages: Message[] = [];
   currentQuery = '';
   thinking = false;
