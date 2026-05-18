@@ -19,12 +19,16 @@ C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpul
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\IncidentSeverity.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\IncidentStatus.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\Organization.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\Project.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\RefreshToken.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\Role.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\Service.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\User.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\IncidentRepository.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\OrganizationRepository.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\ProjectRepository.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\RefreshTokenRepository.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\ServiceRepository.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\UserRepository.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\security\JwtAuthenticationFilter.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\security\SecurityConfig.java
