@@ -15,6 +15,9 @@ C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpul
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\dto\LoginRequest.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\dto\PrometheusResponse.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\dto\RegisterRequest.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\AiAnalysis.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\Alert.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\AlertRule.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\Incident.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\IncidentAssignment.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\IncidentComment.java
@@ -27,6 +30,9 @@ C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpul
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\Role.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\Service.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\entity\User.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\AiAnalysisRepository.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\AlertRepository.java
+C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\AlertRuleRepository.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\IncidentAssignmentRepository.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\IncidentCommentRepository.java
 C:\Users\Gauri\OneDrive\Desktop\cloudpulse.v2\backend\src\main\java\com\cloudpulse\backend\repository\IncidentEventRepository.java
